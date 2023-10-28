@@ -1,0 +1,68 @@
+Table: Employee
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains information about the salary of an employee.
+ 
+
+Write a solution to find the second highest salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+Example 2:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| null                |
++---------------------+
+
+
+SELECT
+    IFNULL(                     --如果没有第二列的话就返回null
+      (SELECT DISTINCT Salary   --distinct 选择单一的值
+       FROM Employee
+       ORDER BY Salary DESC     --降序排列
+        LIMIT 1 OFFSET 1),      --以第一行为起点跳一行（选择第二行）
+    NULL) AS SecondHighestSalary
+
+--这里的主要思路是先对薪水这一列进行排序，然后选择第二个。
+
+
+
+
+
+
+
