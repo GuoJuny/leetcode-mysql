@@ -1,0 +1,59 @@
+Table: Person
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains an email. The emails will not contain uppercase letters.
+ 
+
+Write a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Person table:
++----+---------+
+| id | email   |
++----+---------+
+| 1  | a@b.com |
+| 2  | c@d.com |
+| 3  | a@b.com |
++----+---------+
+Output: 
++---------+
+| Email   |
++---------+
+| a@b.com |
++---------+
+Explanation: a@b.com is repeated two times.
+
+solution:
+
+SELECT email from Person
+group by email
+having count(email) > 1;
+
+group by的用法
+数据分组：GROUP BY允许您按照一个或多个列的值对查询结果进行分组。这对于对数据进行分组汇总以及生成报表非常有用。
+
+聚合操作：您可以在GROUP BY子句中使用聚合函数（如SUM、COUNT、AVG、MAX、MIN）来计算每个分组内的统计信息。例如，您可以计算每个组的总和、平均值、最大值或最小值。
+
+数据去重：GROUP BY可以用于去除结果集中的重复行。通过将查询结果按照一列或多列分组，您可以确保每个组中只包含唯一的值。
+
+过滤分组：使用HAVING子句结合GROUP BY，您可以过滤分组后的数据，仅包括符合特定条件的分组。这允许您筛选出聚合结果满足特定条件的分组。
+
+
+
+
+
+
